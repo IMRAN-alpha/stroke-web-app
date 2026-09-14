@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stroke Risk Prediction</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div>
+        <p class="tag">AI HEALTH ANALYTICS</p>
+        <h1>Stroke Risk Predictor</h1>
+        <p class="subtitle">
+          Enter patient details to generate an educational risk estimate.
+        </p>
+      </div>
+      <div class="status">● MODEL APP</div>
+    </header>
+
+    <section class="warning">
+      <strong>Medical Disclaimer:</strong>
+      This application is for educational purposes only. It does not provide
+      medical diagnosis or replace a qualified healthcare professional.
+    </section>
+
+    <form id="predictionForm" class="form-card">
+      <h2>Patient Information</h2>
+
+      <div class="form-grid">
+        <label>
+          Age
+          <input type="number" id="age" min="0" max="120" step="0.1" required>
+        </label>
+
+        <label>
+          BMI
+          <input type="number" id="bmi" min="1" max="100" step="0.1" required>
+        </label>
+
+        <label>
+          Average Glucose Level
+          <input type="number" id="glucose" min="1" step="0.1" required>
+        </label>
+
+        <label>
+          Gender
+          <select id="gender" required>
+            <option value="">Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+        <label>
+          Hypertension
+          <select id="hypertension" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </label>
+
+        <label>
+          Heart Disease
+          <select id="heartDisease" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </label>
+
+        <label>
+          Ever Married
+          <select id="married" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </label>
+
+        <label>
+          Work Type
+          <select id="workType" required>
+            <option value="Private">Private</option>
+            <option value="Self-employed">Self-employed</option>
+            <option value="Govt_job">Government Job</option>
+            <option value="children">Children</option>
+            <option value="Never_worked">Never Worked</option>
+          </select>
+        </label>
+
+        <label>
+          Residence Type
+          <select id="residence" required>
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>
+          </select>
+        </label>
+
+        <label>
+          Smoking Status
+          <select id="smoking" required>
+            <option value="never smoked">Never Smoked</option>
+            <option value="formerly smoked">Formerly Smoked</option>
+            <option value="smokes">Smokes</option>
+            <option value="Unknown">Unknown</option>
+          </select>
+        </label>
+      </div>
+
+      <button type="submit" id="predictButton">
+        Analyze Risk
+      </button>
+
+      <button type="button" id="resetButton" class="secondary">
+        Reset Form
+      </button>
+    </form>
+
+    <section id="resultCard" class="result-card hidden">
+      <p class="tag">PREDICTION RESULT</p>
+      <h2 id="resultTitle">Result</h2>
+      <div id="riskValue">--%</div>
+      <p id="resultMessage"></p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+
